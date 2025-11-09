@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>フォームへ移動中</title>
+  <style>
+    html,body{height:100%;margin:0;font-family:system-ui,Arial,sans-serif;}
+    .wrap{display:flex;align-items:center;justify-content:center;height:100%}
+    .card{text-align:center;padding:24px}
+    .small{opacity:.6;font-size:12px;margin-top:8px;word-break:break-all}
+  </style>
+
+  <!-- GA4計測コード -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TVR7ZK7ZL8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TVR7ZK7ZL8', { 'anonymize_ip': true });
+  </script>
+  <!-- GA4ここまで -->
+
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div>お待ちください…フォームへ移動中</div>
+      <div class="small">通信環境により2〜3秒かかる場合があります</div>
+      <div id="target" class="small"></div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSchv7x-wevzqtD9wdtz2mtJslcp4uoHKr1rO3CIhX_2GZrXxQ/viewform?usp=pp_url&entry.399044187=aaa';  // ←あなたのフォームURL
+      const qsRaw = location.search.replace(/^\?+/,'');
+      const joiner = FORM_URL.includes('?') ? (qsRaw ? '&':'') : (qsRaw ? '?' : '');
+      const target = FORM_URL + joiner + qsRaw;
+
+      document.getElementById('target').textContent = '→ ' + target;
+
+      setTimeout(function(){
+        try { location.replace(target); }
+        catch(e) { location.href = target; }
+      }, 500);
+    })();
+  </script>
+
+</body>
+</html>
